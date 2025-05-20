@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'J1234567890';
 
 export async function POST(req: Request) {
   try {
