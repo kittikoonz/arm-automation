@@ -93,7 +93,7 @@ body {
   background: var(--white);
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
-}
+  }
 
 .button-secondary:hover {
   background: var(--background-color);

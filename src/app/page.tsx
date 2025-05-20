@@ -6,7 +6,7 @@ export default function Home() {
       <div className="card">
         <h1 className="title">Farm Automation</h1>
         <p className="subtitle">Automate your farming tasks with ease</p>
-        
+
         <div className="button-group">
           <Link href="/login" className="button button-primary">
             Login
