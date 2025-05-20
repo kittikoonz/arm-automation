@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
 import { compare } from 'bcryptjs';
-import { PrismaClient } from '@prisma/client';
 import { sign } from 'jsonwebtoken';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'J1234567890';
+// Ensure JWT_SECRET is defined at build time
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is not set');
+}
+
+// Type assertion to help TypeScript understand JWT_SECRET is definitely a string
+const jwtSecret: string = JWT_SECRET;
 
 export async function POST(req: Request) {
   try {
@@ -48,7 +54,7 @@ export async function POST(req: Request) {
         username: user.username,
         level: user.level
       },
-      JWT_SECRET,
+      jwtSecret,
       { expiresIn: '24h' }
     );
 
