@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verify } from 'jsonwebtoken';
+import { jwtVerify } from 'jose';
 
 // Ensure JWT_SECRET is defined at build time
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -11,7 +11,7 @@ if (!JWT_SECRET) {
 // Type assertion to help TypeScript understand JWT_SECRET is definitely a string
 const jwtSecret: string = JWT_SECRET;
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Get the pathname of the request
   const path = request.nextUrl.pathname;
 
@@ -24,8 +24,8 @@ export function middleware(request: NextRequest) {
   // Verify the token
   let isAuthenticated = false;
   try {
-    if (token) {
-      verify(token, jwtSecret);
+    if (token && JWT_SECRET) {
+      await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
       isAuthenticated = true;
     }
   } catch (error) {
