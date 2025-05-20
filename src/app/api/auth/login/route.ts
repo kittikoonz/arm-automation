@@ -57,11 +57,20 @@ export async function POST(req: Request) {
     // Remove sensitive data from response
     const { password: _, pin: __, ...userWithoutSensitiveData } = user;
 
-    return NextResponse.json({
+    // Set the token as an HTTP-only cookie
+    const response = NextResponse.json({
       message: 'Login successful',
       user: userWithoutSensitiveData,
       token
     });
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      path: '/',
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 60 * 60 * 24 // 1 day
+    });
+    return response;
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
