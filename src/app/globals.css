@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-light: #86efac;
+  --background-color: #f0fdf4;
+  --text-color: #333;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, var(--background-color), var(--primary-light));
+  min-height: 100vh;
+  color: var(--text-color);
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  backdrop-filter: blur(8px);
+}
+
+.title {
+  color: var(--primary-color);
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.button-primary {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.button-primary:hover {
+  background: var(--primary-dark);
+}
+
+.button-secondary {
+  background: var(--white);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.button-secondary:hover {
+  background: var(--background-color);
+}
+
+.footer-text {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 24px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+}
+
+/* Custom input styles */
+.input-primary {
+  @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500;
+}
+
+/* Custom card styles */
+.card {
+  @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-200 hover:shadow-xl;
+}
