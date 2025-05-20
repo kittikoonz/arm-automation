@@ -73,4 +73,8 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  return NextResponse.json({ status: 'ok' });
 } 
